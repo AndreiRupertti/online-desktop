@@ -1,19 +1,30 @@
 {
-  "name": "andrei",
+  "name": "music-application",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "check": "mocha-watch"
+    "start": "nodemon app.js",
+    "coverage": "nyc mocha",
+    "test": "mocha --recursive --watch"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^3.5.3"
-  },
   "dependencies": {
-    "express": "^4.16.0"
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.10",
+    "mongoose": "^4.11.14",
+    "node-sass-middleware": "^0.11.0",
+    "scss": "^0.2.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.0",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.12.1",
+    "nyc": "^11.2.1"
   }
 }

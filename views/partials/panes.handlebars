@@ -1,0 +1,21 @@
+<div id="pane" class="pane column hidden">
+    <div id="pane-header" class="pane-header">
+      <div class="pane-buttons">
+          <p class="button-pane" onclick='minimizePane("PP")'>-</p>
+          <p class="button-pane" onclick='changePaneSize("pane")'>&#6896;</p>
+          <p class="button-pane" onclick='closePane("pane")'>x</p>
+      </div>
+    </div>
+    {{#musicas}}
+    {{name}}
+    {{artist}}
+    {{musicStyle}}<br>
+    <form class="myform" action="updateMusic" method="post">
+      <div class="">
+        <input id='id' type="hidden" value="{{ _id }}">
+        <input id='newName' type="text" name="name" placeholder="renomear"><br>
+      </div>
+      <input  type="button" value="Submit form">
+    </form>
+    {{/musicas}}
+</div>
