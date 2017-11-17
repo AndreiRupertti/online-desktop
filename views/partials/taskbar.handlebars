@@ -1,15 +1,10 @@
 <div class="initButton">
-  <p class="full-center">AI</p>
+  <img src="../../public/images/windownsIcon.png" alt="">
 </div>
-
+{{#programs}}
 <div id='taskbar-icons' class="shortcuts full-center row">
-  <div id='PP' class="icon full-center hidden" onclick='openPane("pane")'>
-      PP
-  </div>
-  <div id='GG' class="icon full-center hidden">
-      GG
-  </div>
-  <div id='KK' class="icon full-center hidden">
-      KK
+  <div id="{{_id}}-icon" class="icon full-center hidden" onclick='openPane("{{_id}}")'>
+      <img class="icon" src="{{icon}}" alt="{{name}}">
   </div>
 </div>
+{{/programs}}

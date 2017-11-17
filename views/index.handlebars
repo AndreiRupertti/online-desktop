@@ -10,9 +10,11 @@
   </section>
 </div>
 
-<script>
+<script type="text/javascript">
 let hasGrown = false;
-dragElement(document.getElementById(("pane")));
+{{#programs}}
+dragElement(document.getElementById(("{{_id}}")));
+{{/programs}}
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -45,43 +47,49 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-  function minimizePane(id) {
-    closePane("pane")
-    document.getElementById(id).style.visibility = "visible";
-  }
-  function closePane(id) {
-    document.getElementById('PP').style.visibility = "hidden";
-    document.getElementById(id).style.visibility = "hidden";
-  }
-  function openPane(id) {
+function minimizePane(id) {
+  document.getElementById(id).style.visibility = "hidden"
+  document.getElementById(id+"-icon").style.visibility = "visible";
+}
+function closePane(id) {
+  document.getElementById(id+"-icon").style.visibility = "hidden";
+  document.getElementById(id).style.visibility = "hidden";
+}
+function openPane(id) {
+  setLeftAndTop(id, 30, 30);
+  document.getElementById(id).style.visibility = "visible";
+}
+function changePaneSize(id){
+  if (hasGrown) {
     setLeftAndTop(id, 30, 30);
-    document.getElementById(id).style.visibility = "visible";
+    document.getElementById(id).style.width = '30vw'
+    document.getElementById(id).style.height = '30vh'
+    hasGrown = false
+  }else{
+    setLeftAndTop(id, 0, 0);
+    document.getElementById(id).style.width = '100vw';
+    document.getElementById(id).style.height = '100vh';
+    hasGrown= true
   }
-  function changePaneSize(id){
-    if (hasGrown) {
-      setLeftAndTop(id, 30, 30);
-      document.getElementById(id).style.width = '30vw'
-      document.getElementById(id).style.height = '30vh'
-      hasGrown = false
-    }else{
-      setLeftAndTop(id, 0, 0);
-      document.getElementById(id).style.width = '100vw';
-      document.getElementById(id).style.height = '100vh';
-      hasGrown= true
-    }
-  }
-  function setLeftAndTop(id, left, top){
-    document.getElementById(id).style.left = left+'vw'
-    document.getElementById(id).style.top = top+'vh'
-  }
+}
+function setLeftAndTop(id, left, top){
+  document.getElementById(id).style.left = left+'vw'
+  document.getElementById(id).style.top = top+'vh'
+}
+//////////////////////////////
+</script>
+<script language="JavaScript" type="text/javascript">
+  $('#btn').click(function(e){
+    e.preventDefault();
+    var data = {};
+    data.title = $('#newName').val()
 
-  //post
-  function updateMusic() {
-    console.log('dasds');
-    const contentId = document.querySelector('#content-id').value
-    axios
-      .post('/updateMusic', {id: contentId})
-      .then(() => console.log('Deu certo!'))
-      .catch(error => console.log('Erro ao renomear musica', error.message))
-  }
+  $.ajax('http://localhost:3000/updatemusic', {
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    success: function() { console.log('success');},
+    error  : function() { console.log('error');}
+  });
+  });
 </script>
